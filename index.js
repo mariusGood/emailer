@@ -55,7 +55,7 @@ router.post('/contact', validateUser, (req, res) => {
   const message = req.body.message;
   const mail = {
     from: name,
-    to: 'mariusgudinas@gmail.com',
+    to: process.env.EMAIL,
     subject: 'Contact Form Submission',
     html: `<p>Name: ${name}</p>
              <p>Email: ${email}</p>
@@ -63,7 +63,7 @@ router.post('/contact', validateUser, (req, res) => {
   };
   contactEmail.sendMail(mail, (error) => {
     if (error) {
-      res.json({ status: toString(error) });
+      res.json({ status: 'ERROR' });
     } else {
       res.json({ status: 'Message Sent' });
     }
