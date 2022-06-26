@@ -18,6 +18,10 @@ const contactEmail = nodemailer.createTransport({
     user: process.env.EMAIL,
     pass: process.env.PASS,
   },
+
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
 contactEmail.verify((error) => {
